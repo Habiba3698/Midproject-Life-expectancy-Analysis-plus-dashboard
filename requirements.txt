@@ -3,5 +3,3 @@ pandas
 plotly 
 seaborn
 matplotlib
-scikit-learn
-imblearn
