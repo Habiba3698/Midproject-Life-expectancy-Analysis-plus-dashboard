@@ -1,4 +1,3 @@
-
 import streamlit as st
 import plotly.express as px 
 import seaborn as sns
@@ -23,7 +22,7 @@ st.markdown(
 
 
 
-df = pd.read_csv('data/Life Expectancy CleanedUpdated.csv')
+df = pd.read_csv('Life Expectancy CleanedUpdated.csv')
 
 tab1,tab2,tab3,tab4,tab5,tab6=st.tabs(['Status Analysis','Top and Bottom Countries',' Relationships1','Population vs life expectancy','Alcohol vs Life expectancy','Scatterplots'])
 # select which feature to compare
@@ -119,7 +118,9 @@ with tab3:
     
     with col2:
         # see the immunization average and life expectancy of each of the top 5 countries
-
+        top5 =df.groupby(["Country"])["Life expectancy", 'Hepatitis B'].mean().sort_values(ascending=False, by='Life expectancy').head(5).reset_index()
+        fig = px.pie(top5, values='Hepatitis B', names='Country', color='Life expectancy', color_discrete_sequence=px.colors.qualitative.D3, title= 'Hepatitis B immunization and Life expectancy in the top 5 longest living countries')
+        st.plotly_chart(fig,use_container_width=True)
         
         # relationship between HepB immunization and life expectancy
         hep=df.groupby(['Status','Hepatitis B'])["Life expectancy"].mean().sort_values(ascending=True).reset_index()
@@ -139,7 +140,15 @@ with tab4:
     with col2:
         # relationship between population and life expectancy over the years
         st.write('Population vs life expectancy over the years')
-        
+        pop=df.groupby(["Year"])["Life expectancy", "Population"].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+        fig.add_trace(go.Scatter(x= pop["Year"], y= pop["Population"], name="Average Population"),secondary_y=False)
+
+        fig.add_trace(go.Scatter( x=pop["Year"], y=pop["Life expectancy"], name="Average Life expectancy"),secondary_y=True,)
+        fig.update_xaxes(title_text="Year")
+        fig.update_yaxes(title_text="Population", secondary_y=False)
+        fig.update_yaxes(title_text="Life Expectancy", secondary_y=True)
+        st.plotly_chart(fig,use_container_width=True)
         
         # see the average expectancy and its relation to population
         fig= px.scatter(df, x='Population', y="Life expectancy",trendline="ols", title='Population vs Life expectancy')
@@ -148,11 +157,18 @@ with tab4:
 with tab5:
     col1,col2,col3=st.columns([1,11,1])
     with col2:
-        
         # seeing average life expectancy and alcohol consumption through the years
-        st.write('error')
+        st.write('Alcohol Consumption vs life expectancy over the years')
+        alc=df.groupby(["Year"])["Life expectancy", "Alcohol"].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+        fig.add_trace(go.Scatter(x= alc["Year"], y= alc["Alcohol"], name="Average Alcohol consumption"),secondary_y=False)
 
-       
+        fig.add_trace(go.Scatter( x=alc["Year"], y=alc["Life expectancy"], name="Average Life expectancy"),secondary_y=True,)
+
+        fig.update_xaxes(title_text="Year")
+        fig.update_yaxes(title_text="Alcohol in pure litres ", secondary_y=False)
+        fig.update_yaxes(title_text="Average Life Expectancy", secondary_y=True)
+        st.plotly_chart(fig,use_container_width=True)
         
 with tab6:
     col1,col2,col3=st.columns([1,13,1])
