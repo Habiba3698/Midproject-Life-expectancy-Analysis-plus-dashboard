@@ -23,7 +23,7 @@ st.markdown(
 
 
 
-df = pd.read_csv('https://raw.githubusercontent.com/Habiba3698/Midproject-Life-expectancy-Analysis-plus-dashboard/refs/heads/main/Life%20Expectancy%20CleanedUpdated.csv', index_col=0)
+df = pd.read_csv(r'https://raw.githubusercontent.com/Habiba3698/Midproject-Life-expectancy-Analysis-plus-dashboard/refs/heads/main/Life%20Expectancy%20CleanedUpdated.csv', index_col=0)
 
 tab1,tab2,tab3,tab4,tab5,tab6=st.tabs(['Status Analysis','Top and Bottom Countries',' Relationships1','Population vs life expectancy','Alcohol vs Life expectancy','Scatterplots'])
 # select which feature to compare
