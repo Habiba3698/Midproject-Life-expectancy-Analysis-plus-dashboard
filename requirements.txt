@@ -3,4 +3,3 @@ pandas
 plotly 
 seaborn
 matplotlib
-plotly.graph_objects
