@@ -139,15 +139,7 @@ with tab4:
     with col2:
         # relationship between population and life expectancy over the years
         st.write('Population vs life expectancy over the years')
-        pop=df.groupby(["Year"])["Life expectancy", "Population"].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
-        fig = make_subplots(specs=[[{"secondary_y": True}]])
-        fig.add_trace(go.Scatter(x= pop["Year"], y= pop["Population"], name="Average Population"),secondary_y=False)
-
-        fig.add_trace(go.Scatter( x=pop["Year"], y=pop["Life expectancy"], name="Average Life expectancy"),secondary_y=True,)
-        fig.update_xaxes(title_text="Year")
-        fig.update_yaxes(title_text="Population", secondary_y=False)
-        fig.update_yaxes(title_text="Life Expectancy", secondary_y=True)
-        st.plotly_chart(fig,use_container_width=True)
+        
         
         # see the average expectancy and its relation to population
         fig= px.scatter(df, x='Population', y="Life expectancy",trendline="ols", title='Population vs Life expectancy')
@@ -157,17 +149,7 @@ with tab5:
     col1,col2,col3=st.columns([1,11,1])
     with col2:
         # seeing average life expectancy and alcohol consumption through the years
-        st.write('Alcohol Consumption vs life expectancy over the years')
-        alc=df.groupby(["Year"])["Life expectancy", "Alcohol"].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
-        fig = make_subplots(specs=[[{"secondary_y": True}]])
-        fig.add_trace(go.Scatter(x= alc["Year"], y= alc["Alcohol"], name="Average Alcohol consumption"),secondary_y=False)
-
-        fig.add_trace(go.Scatter( x=alc["Year"], y=alc["Life expectancy"], name="Average Life expectancy"),secondary_y=True,)
-
-        fig.update_xaxes(title_text="Year")
-        fig.update_yaxes(title_text="Alcohol in pure litres ", secondary_y=False)
-        fig.update_yaxes(title_text="Average Life Expectancy", secondary_y=True)
-        st.plotly_chart(fig,use_container_width=True)
+       
         
 with tab6:
     col1,col2,col3=st.columns([1,13,1])
