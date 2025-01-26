@@ -148,7 +148,10 @@ with tab4:
 with tab5:
     col1,col2,col3=st.columns([1,11,1])
     with col2:
+        
         # seeing average life expectancy and alcohol consumption through the years
+        st.write('error')
+
        
         
 with tab6:
