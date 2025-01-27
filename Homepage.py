@@ -67,8 +67,9 @@ st.markdown("""
 df = pd.read_csv('data/Life Expectancy CleanedUpdated.csv')
 df.drop("Unnamed: 0", axis=1, inplace=True)
 # Use the new data after cleaning and preprocessing, we wrote it to a.csv file in our analysis notebook
-df_developed= df[df['Status']=='Developed'].groupby(['Status'])(df.select_dtypes(include='number').columns.tolist()).mean()  # get the statistics for each status to display on dashboard
-df_developing= df[df['Status']=='Developing'].groupby(['Status'])(df.select_dtypes(include='number').columns.tolist()).mean() 
+df_stat= df.groupby(['Status'])(df.select_dtypes(include='number').columns.tolist()).mean().reset_index()  # get the statistics for each status to display on dashboard
+df_developed= df_stat[df_stat['Status']=='Developed']
+df_developing= df_stat[df_stat['Status']=='Developing']
 
 ## side bar 
 x = st.sidebar.checkbox('Show Data', False, key=1)
@@ -89,21 +90,21 @@ if status=='Developed':
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Life Expectancy</h3>
-                <p>{df_developed['Life expectancy'][0]}</p>
+                <p>{df_developed['Life expectancy']}</p>
             </div>
         ''', unsafe_allow_html=True)
         st.write(" ")
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Adult Mortality</h3>
-                <p>{df_developed['Adult Mortality'][0]}</p>
+                <p>{df_developed['Adult Mortality']}</p>
             </div>
         ''', unsafe_allow_html=True)
         st.write(" ")
         st.markdown(f'''
         <div class="metric">
             <h3>Average Schooling Years</h3>
-            <p>{df_developed['Schooling'][0]}</p>
+            <p>{df_developed['Schooling']}</p>
         </div>
     ''', unsafe_allow_html=True)
 
@@ -112,7 +113,7 @@ if status=='Developed':
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Population</h3>
-                <p>{df_developed['Population'][0]}</p>
+                <p>{df_developed['Population']}</p>
             </div>
         ''', unsafe_allow_html=True)
 
@@ -121,7 +122,7 @@ if status=='Developed':
         st.markdown(f'''
             <div class="metric">
                 <h3>Avg BMI</h3>
-                <p>{df_developed['BMI'][0]}</p>
+                <p>{df_developed['BMI']}</p>
             </div>
         ''', unsafe_allow_html=True)
         
@@ -130,7 +131,7 @@ if status=='Developed':
         st.markdown(f''' 
             <div class="metric">
                 <h3>Average GDP</h3>
-                <p>{df_developed['GDP'][0]}</p>
+                <p>{df_developed['GDP']}</p>
             </div>
         ''', unsafe_allow_html=True)
 
@@ -153,14 +154,14 @@ elif status== 'Developing':
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Life Expectancy</h3>
-                <p>{df_developing['Life expectancy'][0]}</p>
+                <p>{df_developing['Life expectancy']}</p>
             </div>
         ''', unsafe_allow_html=True)
         st.write(" ")
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Adult Mortality</h3>
-                <p>{df_developing['Adult Mortality'][0]}</p>
+                <p>{df_developing['Adult Mortality']}</p>
             </div>
         ''', unsafe_allow_html=True)
         st.write(" ")
@@ -168,7 +169,7 @@ elif status== 'Developing':
         st.markdown(f'''
             <div class="metric">
                 <h3>Average GDP</h3>
-                <p>{df_developing['GDP'][0]}</p>
+                <p>{df_developing['GDP']}</p>
             </div>
         ''', unsafe_allow_html=True)
 
@@ -178,7 +179,7 @@ elif status== 'Developing':
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Population</h3>
-                <p>{df_developing['Population'][0]}</p>
+                <p>{df_developing['Population']}</p>
             </div>
         ''', unsafe_allow_html=True)
 
@@ -187,7 +188,7 @@ elif status== 'Developing':
         st.markdown(f'''
             <div class="metric">
                 <h3>Avg BMI</h3>
-                <p>{df_developing['BMI'][0]}</p>
+                <p>{df_developing['BMI']}</p>
             </div>
         ''', unsafe_allow_html=True)
         
@@ -196,7 +197,7 @@ elif status== 'Developing':
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Schooling Years</h3>
-                <p>{df_developing['Schooling'][0]}</p>
+                <p>{df_developing['Schooling']}</p>
             </div>
         ''', unsafe_allow_html=True)
 
