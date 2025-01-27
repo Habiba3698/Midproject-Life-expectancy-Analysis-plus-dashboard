@@ -142,7 +142,7 @@ with tab4:
     with col2:
         # relationship between population and life expectancy over the years
         st.write('Population vs life expectancy over the years')
-        pop=df.groupby(["Year"])["Life expectancy", "Population"].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
+        pop=df.groupby(["Year"])[["Life expectancy", "Population"]].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
         fig = make_subplots(specs=[[{"secondary_y": True}]])
         fig.add_trace(go.Scatter(x= pop["Year"], y= pop["Population"], name="Average Population"),secondary_y=False)
 
@@ -161,7 +161,7 @@ with tab5:
     with col2:
         # seeing average life expectancy and alcohol consumption through the years
         st.write('Alcohol Consumption vs life expectancy over the years')
-        alc=df.groupby(["Year"])["Life expectancy", "Alcohol"].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
+        alc=df.groupby(["Year"])[["Life expectancy", "Alcohol"]].mean().sort_values(ascending=True, by= "Life expectancy").reset_index()
         fig = make_subplots(specs=[[{"secondary_y": True}]])
         fig.add_trace(go.Scatter(x= alc["Year"], y= alc["Alcohol"], name="Average Alcohol consumption"),secondary_y=False)
 
