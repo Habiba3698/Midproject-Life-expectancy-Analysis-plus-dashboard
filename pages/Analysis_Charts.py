@@ -120,7 +120,7 @@ with tab3:
     
     with col2:
         # see the immunization average and life expectancy of each of the top 5 countries
-        top5 =df.groupby(["Country"])[["Life expectancy", 'Hepatitis B']].mean().sort_values(ascending=False, by='Life expectancy').head(5).reset_index()
+        top5 =df.groupby(["Country"])[["Life expectancy", 'Hepatitis B']].mean().sort_values(ascending=False, by='Life expectancy').reset_index().head(5).
         fig = px.pie(top5, values='Hepatitis B', names='Country', color='Life expectancy', color_discrete_sequence=px.colors.qualitative.D3, title= 'Hepatitis B immunization and Life expectancy in the top 5 longest living countries')
         st.plotly_chart(fig,use_container_width=True)
         
