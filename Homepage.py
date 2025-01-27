@@ -67,8 +67,8 @@ st.markdown("""
 df = pd.read_csv('data/Life Expectancy CleanedUpdated.csv')
 df.drop("Unnamed: 0", axis=1, inplace=True)
 # Use the new data after cleaning and preprocessing, we wrote it to a.csv file in our analysis notebook
-df_developed= df[df['Status']=='Developed'].groupby(['Status']).mean()   # get the statistics for each status to display on dashboard
-df_developing= df[df['Status']=='Developing'].groupby(['Status']).mean()
+df_developed= df[df['Status']=='Developed'].groupby(['Status']).mean().reset_index()  # get the statistics for each status to display on dashboard
+df_developing= df[df['Status']=='Developing'].groupby(['Status']).mean().reset_index() 
 
 ## side bar 
 x = st.sidebar.checkbox('Show Data', False, key=1)
