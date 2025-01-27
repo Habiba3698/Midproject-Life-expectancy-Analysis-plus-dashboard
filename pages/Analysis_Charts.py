@@ -7,7 +7,6 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-st.cache_resource.clear()
 st.markdown(
     """
     <style>
