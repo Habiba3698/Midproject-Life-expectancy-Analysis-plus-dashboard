@@ -23,6 +23,8 @@ st.markdown(
 
 
 df = pd.read_csv('data/Life Expectancy CleanedUpdated.csv')
+df.drop("Unnamed: 0", axis=1, inplace=True)
+
 
 tab1,tab2,tab3,tab4,tab5,tab6=st.tabs(['Status Analysis','Top and Bottom Countries',' Relationships1','Population vs life expectancy','Alcohol vs Life expectancy','Scatterplots'])
 # select which feature to compare
