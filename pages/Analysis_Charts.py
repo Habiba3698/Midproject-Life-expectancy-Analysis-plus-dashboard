@@ -84,7 +84,7 @@ with tab1:
             fig = px.bar(grouped_schooling, x='Status', y='Schooling', color_discrete_sequence=px.colors.qualitative.G10, title= 'Average schooling years According to Country Status')
             st.plotly_chart(fig,use_container_width=True)
         elif comp== 'HIV/AIDS':
-            HIV =df.groupby(['Status'])["HIV/AIDS", 'Life expectancy'].mean().sort_values(ascending=False, by= "HIV/AIDS").reset_index()
+            HIV =df.groupby(['Status'])[["HIV/AIDS", 'Life expectancy']].mean().sort_values(ascending=False, by= "HIV/AIDS").reset_index()
             fig = px.bar(HIV, x='HIV/AIDS', y='Life expectancy', color='Status', color_continuous_scale=px.colors.sequential.GnBu, title= 'HIV/AIDS and average life expectancy according to status')
             st.plotly_chart(fig,use_container_width=True)
 
@@ -93,11 +93,11 @@ with tab2:
     
     with col1:
         # Show highest 15 countries in life expectancy
-        top15 =df.groupby(["Country"])["Life expectancy"].mean().sort_values(ascending=False).head(15).reset_index()
+        top15 =df.groupby(["Country"])["Life expectancy"].mean().sort_values(ascending=False).reset_index().head(15)
         fig = px.bar(top15, x='Country', y='Life expectancy', color='Life expectancy', color_continuous_scale=px.colors.sequential.GnBu, title= 'Top fifteen countries in life expectancy')
         st.plotly_chart(fig,use_container_width=True)
         #top ten countries in expenditure
-        topexp= df.groupby(["Country","Status"])["Total expenditure"].mean().sort_values(ascending=False).head(10).reset_index()
+        topexp= df.groupby(["Country","Status"])["Total expenditure"].mean().sort_values(ascending=False).reset_index().head(10)
         fig21 = px.bar(topexp , x='Country', y='Total expenditure', color= "Status", color_continuous_scale=px.colors.sequential.GnBu, title= 'Top Ten Countries in Total Expenditure and their Statuses')
         fig21.update_layout(xaxis_categoryorder = 'total descending')
         st.plotly_chart(fig21,use_container_width=True)
