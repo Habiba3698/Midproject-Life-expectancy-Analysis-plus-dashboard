@@ -220,14 +220,14 @@ else:
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Life Expectancy</h3>
-                <p>{df['Life expectancy'].mean()}</p>
+                <p>{df['Life expectancy'].mean().round(3)}</p>
             </div>
         ''', unsafe_allow_html=True)
         st.write(" ")
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Adult Mortality</h3>
-                <p>{df['Adult Mortality'].mean()}</p>
+                <p>{df['Adult Mortality'].mean().round(3)}</p>
             </div>
         ''', unsafe_allow_html=True)
         st.write(" ")
@@ -235,7 +235,7 @@ else:
         st.markdown(f'''
             <div class="metric">
                 <h3>Average GDP</h3>
-                <p>{df['GDP'].mean()}</p>
+                <p>{df['GDP'].mean().round(3)}</p>
             </div>
         ''', unsafe_allow_html=True)
 
@@ -245,7 +245,7 @@ else:
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Population</h3>
-                <p>{df['Population'].mean()}</p>
+                <p>{df['Population'].mean().round(3)}</p>
             </div>
         ''', unsafe_allow_html=True)
 
@@ -254,7 +254,7 @@ else:
         st.markdown(f'''
             <div class="metric">
                 <h3>Avg BMI</h3>
-                <p>{df['BMI'].mean()}</p>
+                <p>{df['BMI'].mean().round(3)}</p>
             </div>
         ''', unsafe_allow_html=True)
         
@@ -263,7 +263,7 @@ else:
         st.markdown(f'''
             <div class="metric">
                 <h3>Average Schooling Years</h3>
-                <p>{df['Schooling'].mean()}</p>
+                <p>{df['Schooling'].mean().round(3)}</p>
             </div>
         ''', unsafe_allow_html=True)
 
